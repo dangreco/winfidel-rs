@@ -1,10 +1,18 @@
+//! Build script for Cap'n Proto schema compilation and linker configuration.
+
 fn main() {
+    // capnpc::CompilerCommand::new()
+    //     .src_prefix("proto")
+    //     .file("proto/sensor.capnp")
+    //     .run()
+    //     .expect("schema compiler command");
+
     linker_be_nice();
     println!("cargo:rustc-link-arg=-Tdefmt.x");
-    // make sure linkall.x is the last linker script (otherwise might cause problems with flip-link)
     println!("cargo:rustc-link-arg=-Tlinkall.x");
 }
 
+/// Provides helpful error messages for common linker issues.
 fn linker_be_nice() {
     let args: Vec<String> = std::env::args().collect();
     if args.len() > 1 {

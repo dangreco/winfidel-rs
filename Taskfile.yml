@@ -52,3 +52,10 @@ tasks:
       - toml:fix
       - rust:fix
     cmds: []
+
+  flash:
+    desc: Flash the firmware to the device
+    silent: true
+    deps:
+      - rust:flash
+    cmds: []

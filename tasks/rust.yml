@@ -42,3 +42,9 @@ tasks:
     cmds:
       - cargo clippy --fix
       - cargo fmt --all
+
+  flash:
+    desc: Flash the firmware to the device
+    silent: true
+    cmds:
+      - cargo run --release

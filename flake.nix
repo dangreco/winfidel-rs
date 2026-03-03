@@ -39,7 +39,7 @@
           };
 
           rust = rec {
-            version = "1.93.0";
+            version = "1.92.0";
             package = pkgs'.rust-bin.stable.${version}.default.override {
               extensions = [
                 "rust-src"
@@ -84,6 +84,13 @@
                     allTargets = false;
                     target = "riscv32imc-unknown-none-elf";
                   };
+                  languages.TOML.formatter.external = {
+                    command = "${pkgs.taplo}/bin/taplo";
+                    arguments = [
+                      "format"
+                      "-"
+                    ];
+                  };
                 };
               in
               pkgs.mkShell {
@@ -97,6 +104,9 @@
                     espflash
                     probe-rs-tools
                     esp-generate
+                    capnproto
+                    taplo
+                    cargo-machete
                   ]
                   ++ config.pre-commit.settings.enabledPackages;
 
@@ -115,6 +125,7 @@
                 with pkgs;
                 [
                   go-task
+                  capnproto
                 ]
                 ++ config.pre-commit.settings.enabledPackages;
               buildInputs = with pkgs; [ rust.package ];

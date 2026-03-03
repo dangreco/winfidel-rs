@@ -1478,6 +1478,7 @@ dependencies = [
  "esp-rtos",
  "rtt-target",
  "static_cell",
+ "thiserror",
 ]
 
 [[package]]

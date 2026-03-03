@@ -27,6 +27,7 @@ esp-rtos = { version = "0.2.0", features = [
 ] }
 rtt-target = { version = "0.6.2", features = ["defmt"] }
 static_cell = { version = "2.1.1" }
+thiserror = { version = "2.0.18", default-features = false }
 
 [profile.dev]
 opt-level = "s"

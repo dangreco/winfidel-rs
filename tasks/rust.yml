@@ -27,7 +27,9 @@ tasks:
     desc: Test the project
     silent: true
     deps: []
-    cmds: []
+    cmds:
+      - cargo test -p driver-led --target x86_64-unknown-linux-gnu
+      - cargo test -p driver-mcp3221 --target x86_64-unknown-linux-gnu
 
   lint:
     desc: Check for linting/formatting errors

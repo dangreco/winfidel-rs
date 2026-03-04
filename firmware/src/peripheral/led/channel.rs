@@ -1,9 +1,11 @@
+use driver_led::PwmChannel;
+use esp_hal::ledc;
+
 use esp_hal::gpio::DriveMode;
 use esp_hal::gpio::interconnect::PeripheralOutput;
-use esp_hal::ledc;
 use esp_hal::ledc::channel::ChannelIFace;
 
-use crate::drivers::led::Result;
+use crate::peripheral::led::error::Result;
 
 /// Maps a duty cycle percentage to a value between min and max, optionally inverting it.
 #[inline(always)]
@@ -45,5 +47,13 @@ impl<'d, S: ledc::timer::TimerSpeed> Channel<'d, S> {
         self.internal
             .set_duty(map(self.inverted, 0, 100, duty))
             .map_err(Into::into)
+    }
+}
+
+impl<'d, S: ledc::timer::TimerSpeed> PwmChannel for Channel<'d, S> {
+    type Error = crate::peripheral::led::error::Error;
+
+    fn set_duty(&mut self, duty: u8) -> Result<()> {
+        self.set(duty)
     }
 }

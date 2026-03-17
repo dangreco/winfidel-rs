@@ -9,7 +9,7 @@ name = "winfidel-rs"
 path = "./src/bin/main.rs"
 
 [dependencies]
-capnp = { version = "0.25.1", default-features = false, features = ["alloc"] }
+capnp = { version = "0.25.2", default-features = false, features = ["alloc"] }
 defmt = { version = "1.0.1" }
 driver-led = { version = "0.1.0", path = "../crates/led" }
 driver-mcp3221 = { version = "0.1.0", path = "../crates/mcp3221" }
